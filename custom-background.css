@@ -1,0 +1,96 @@
+/* 背景图片配置文件 */
+
+/* 主页背景样式 - 您可以在这里自定义背景图片 */
+.hero-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  /* 如果您要使用背景图片，请取消下面这行的注释并将路径指向您的图片 */
+  background-image: url('Liujingyi_background1.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* 固定背景，可选 */
+}
+
+/* 背景覆盖层 - 控制透明度 */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* 调整透明度值：第一个参数是红色，第二个是绿色，第三个是蓝色，第四个是透明度alpha值(0.0-1.0) */
+  background: rgba(255, 255, 255, 0.1); /* 60% 不透明，40% 透明 */
+  backdrop-filter: blur(2px); /* 可选：添加轻微模糊效果 */
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* 如果不使用背景图片，请取消上面的注释并使用以下渐变背景 */
+/*
+.hero-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--bg-white) 0%, #f0f2ff 50%, #e6e9ff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(107, 122, 232, 0.05) 0%, transparent 40%),
+              radial-gradient(circle at 80% 70%, rgba(138, 155, 255, 0.05) 0%, transparent 40%);
+}
+*/
+
+/* 确保内容在背景上方清晰可见 */
+.hero-content {
+  text-align: center;
+  z-index: 1;
+  max-width: 800px;
+  padding: 2rem;
+  color: var(--text-primary);
+}
+
+/* 标题和副标题样式 */
+.hero-content .main-title {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-content .subtitle {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* 响应式设计：在小屏幕上调整字体大小 */
+@media (max-width: 768px) {
+  .hero-content .main-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-content .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero-section {
+    background-attachment: scroll; /* 在移动设备上禁用固定背景，以提高性能 */
+  }
+}
